@@ -31,8 +31,6 @@ Already sold on the idea and just want to try it?
 
 Not in the mood to install anything? You could check out the video I&rsquo;ve made on how the app looks like and its basic functionality 🎥 👇
 
-<iframe data-width="854" data-height="480" src="/media/a27dea69a1b4a9054996b416f49d4fef?postId=787638a0e620" data-media-id="a27dea69a1b4a9054996b416f49d4fef" data-thumbnail="https://i.embed.ly/1/image?url=https%3A%2F%2Fi.ytimg.com%2Fvi%2FCo-Apdwao1M%2Fhqdefault.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07" allowfullscreen="" width="700" height="393" frameborder="0"></iframe>
-
 
 # Why
 
