@@ -1,3 +1,0 @@
-# General
-
-Placeholder for nested content
