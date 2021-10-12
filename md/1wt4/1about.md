@@ -1,4 +1,6 @@
-# Just another work tracker for JIRA - WT4
+# Blog post about WT4
+
+This is (still) an unpublished version about WT4 to figure out what is it all about. Soon it should be on medium as well 🤷‍
 
 
 # What is it?
