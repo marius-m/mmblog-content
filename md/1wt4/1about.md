@@ -31,6 +31,8 @@ Already sold on the idea and just want to try it?
 
 Not in the mood to install anything? You could check out the video I&rsquo;ve made on how the app looks like and its basic functionality 🎥 👇
 
+<iframe width="1549" height="796" src="https://www.youtube.com/embed/Co-Apdwao1M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 # Why
 
