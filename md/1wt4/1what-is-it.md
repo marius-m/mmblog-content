@@ -1,6 +1,6 @@
 # Blog post about WT4
 
-This is (still) an unpublished version about WT4 to figure out what is it all about. Soon it should be on medium as well 🤷‍
+Long time coming! Managed to create a blog post for the JIRA 🙌
 
 
 # What is it?
