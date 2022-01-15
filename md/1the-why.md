@@ -12,6 +12,8 @@ I won&rsquo;t lie, I was highly inspired by Joel in [&rsquo;Stop Giving af and S
 
 Not sure if it&rsquo;ll be somewhat useful for anyone. But I guess, not everything has to be useful, just to be fun, right?🤔
 
-And that is my type of garden 👇
+And that is my type of garden 👇 I&rsquo;ll be planting in this garder
 
 ![img](imgs/flower.jpg)
+
+Courtesy of [eb.perler [at] pinterest](https://www.pinterest.com/pin/364510163568720151/)
