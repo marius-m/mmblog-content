@@ -1,14 +1,3 @@
-# Why
-
-Three reasons.
-
-1.  I do talk a lot. And I love tech. Now I need to make it something useful from that.
-
-2.  Over the years, I&rsquo;ve managed to create a tool or two, which some already find it useful. Maybe that will be useful for broader audience.
-
-3.  Didn&rsquo;t manage to find a better place, than this 👈☝️👉👇
-
-
 # About me
 
 I&rsquo;m not particularly interesting person. However I do have a hobby to code. That really has a good transition to various technologies and tools as a side effect.
