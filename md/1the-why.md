@@ -1,6 +1,6 @@
 # The WHY
 
-I to talk a lot.
+I talk quite a lot.
 
 From the sum if it, sometimes and *some things come out somewhat useful*.
 
