@@ -1,5 +1,6 @@
 #+TITLE: Fun with gradle plugins
 
+* Tinkering around Gradle plugins
 From time to time, I get to touch something cool and unusual. This time I got to touch Gradle plugins, which I don't usually do, apart from applying to the project or configuring it by its extensions. I'm pretty sure I am not the only one with this case scenario.
 
 * Backstory or just _why_
