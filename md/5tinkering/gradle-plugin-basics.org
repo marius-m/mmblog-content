@@ -20,23 +20,24 @@ Updating the plugin is not so different from just applying the plugin regularly.
 
 - First off, we need to provide the path where the plugin is located first. So in ={rootProject}/build.gradle= file, let's add a source and a path.
 
-  #+begin_src
-  buildscript {
-    repositories {
-      maven {
-        url "https://plugins.gradle.org/m2/"
-      }
-    }
-    dependencies {
-      classpath "gradle.plugin.com.browserstack.gradle:browserstack-gradle-plugin:3.0.3"
+#+begin_src
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
   }
-  #+end_src
+  dependencies {
+    classpath "gradle.plugin.com.browserstack.gradle:browserstack-gradle-plugin:3.0.3"
+  }
+}
+#+end_src
 
 - Then we need to apply the plugin. That is normally done in project module - ={rootProject}/app/build.gradle= file
-  #+begin_src
+
+#+begin_src
  apply plugin: "com.browserstack.gradle"
-  #+end_src
+#+end_src
 
 - After integration, I like to check if everything synchronizes and works. My go-to command to check if the plugin has any public commands is =./gradlew tasks=, which list all the tasks. Chance is, you'll probably find a few tasks from the plugin there as well.
 
@@ -63,7 +64,8 @@ After plugin builds, it generates a =jar= file, which we will use in our app pro
 Now we need to update the project, so that the project would use our locally editable plugin, instead of the official repository.
 
 - First off, lets _change the dependency path to use our local computer path instead of remote path_
-  #+begin_src
+
+#+begin_src
 buildscript {
     repositories {
         // Original plugin: https://mvnrepository.com/artifact/gradle.plugin.com.browserstack.gradle/browserstack-gradle-plugin/3.0.3
@@ -73,7 +75,8 @@ buildscript {
         classpath ":browserstack-gradle-plugin-3.0.3-u3x"
     }
 }
-  #+end_src
+#+end_src
+
 - To specify a directory, we use =flatDir=
 - We are specifying a directory where =.jar= file is built after we run a build task on a plugin
 - The =classpath= part *starts with a semicolon* - ":"

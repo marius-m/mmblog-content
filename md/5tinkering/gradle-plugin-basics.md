@@ -24,25 +24,25 @@ First off, I would like to mention that I did have an opportunity to write a few
 Updating the plugin is not so different from just applying the plugin regularly. Let&rsquo;s try that first.
 
 -   First off, we need to provide the path where the plugin is located first. So in `{rootProject}/build.gradle` file, let&rsquo;s add a source and a path.
-    
-    ```
-      buildscript {
-        repositories {
-          maven {
-            url "https://plugins.gradle.org/m2/"
-          }
-        }
-        dependencies {
-          classpath "gradle.plugin.com.browserstack.gradle:browserstack-gradle-plugin:3.0.3"
-        }
-      }
-    ```
+
+```
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.browserstack.gradle:browserstack-gradle-plugin:3.0.3"
+  }
+}
+```
 
 -   Then we need to apply the plugin. That is normally done in project module - `{rootProject}/app/build.gradle` file
-    
-    ```
-     apply plugin: "com.browserstack.gradle"
-    ```
+
+```
+ apply plugin: "com.browserstack.gradle"
+```
 
 -   After integration, I like to check if everything synchronizes and works. My go-to command to check if the plugin has any public commands is `./gradlew tasks`, which list all the tasks. Chance is, you&rsquo;ll probably find a few tasks from the plugin there as well.
 
@@ -74,18 +74,19 @@ After plugin builds, it generates a `jar` file, which we will use in our app pro
 Now we need to update the project, so that the project would use our locally editable plugin, instead of the official repository.
 
 -   First off, lets <span class="underline">change the dependency path to use our local computer path instead of remote path</span>
-    
-    ```
-    buildscript {
-        repositories {
-            // Original plugin: https://mvnrepository.com/artifact/gradle.plugin.com.browserstack.gradle/browserstack-gradle-plugin/3.0.3
-            flatDir { dirs "/Users/mm/Projects/random/browserstack-gradle-plugin/build/libs" }
-        }
-        dependencies {
-            classpath ":browserstack-gradle-plugin-3.0.3-u3x"
-        }
+
+```
+buildscript {
+    repositories {
+        // Original plugin: https://mvnrepository.com/artifact/gradle.plugin.com.browserstack.gradle/browserstack-gradle-plugin/3.0.3
+        flatDir { dirs "/Users/mm/Projects/random/browserstack-gradle-plugin/build/libs" }
     }
-    ```
+    dependencies {
+        classpath ":browserstack-gradle-plugin-3.0.3-u3x"
+    }
+}
+```
+
 -   To specify a directory, we use `flatDir`
 -   We are specifying a directory where `.jar` file is built after we run a build task on a plugin
 -   The `classpath` part **starts with a semicolon** - &ldquo;:&rdquo;
