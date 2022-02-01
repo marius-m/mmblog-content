@@ -1,6 +1,15 @@
-# Tinkering around Gradle plugins
+# Tinkering around Gradle plugin basics
 
 From time to time, I get to touch something cool and unusual. This time I got to touch Gradle plugins, which I don&rsquo;t usually do, apart from applying to the project or configuring it by its extensions. I&rsquo;m pretty sure I am not the only one with this case scenario.
+
+
+# TLDR;
+
+Short story of how can you update / develop / tinker on already created Gradle plugin and bend it to your needs. You&rsquo;ll find brief intro how to
+
+-   Build / develop Gradle plugin
+-   Import locally built plugin into your project with your changes applied
+-   Brief overview of important components to know in developing a Gradle plugin
 
 
 # Backstory or just <span class="underline">why</span>
@@ -105,11 +114,11 @@ Essentially the plugin is a regular project with a bit specific structure in how
 -   The project will not recognize a plugin unless it has a special property file with essential information. I had a lot of trouble with this, so be sure to check out `{rootPlugin}/src/main/resources/META-INF.gradle.plugins/com.browserstack.gradle.properties` on a working project. **The directory/file naming is important here**.
 -   Gradle works using tasks. So to find those, you&rsquo;ll need to keep an eye for `extends DefaultTask` or something similar. Also, you&rsquo;ll need to register those tasks to the plugin as well to be recognized - `project.getTasks().create("execute" + appVariantName + "TestsOnBrowserstack", EspressoTask.class...`
 
-After you change the plugin, <span class="underline">build the plugin, then try to build the project you&rsquo;re using the plugin in</span>.
+After you change the plugin, **build the plugin, then try to build the project you&rsquo;re using the plugin in**. It should synchronize the project and see the changes that you have applied for the plugin.
 
 
-# Conclusion
+# The end result
 
-After a few tries, I&rsquo;ve managed to provide a few new features which were essential to our use case. Moreover, I&rsquo;ve managed to create a pull request to give it back to the open source community. And last but not least, create an example (this blog post) that it is actually not so hard to improve the project, by solving our own pains. In other words, **open-source for the win** 🚀.
+After a few tries, I&rsquo;ve managed to provide a [few new features which were essential to our use case](https://github.com/marius-m/browserstack-gradle-plugin). Moreover, I&rsquo;ve managed to create a pull request to [give it back](https://github.com/browserstack/browserstack-gradle-plugin/pull/43) to the open source community. And last but not least, create an example (this blog post) that **it is actually not so hard to improve the project, by solving our own pains**. In other words, **open-source for the win** 🚀.
 
 And most important, I have not have had so much fun in a long time 🧁.
