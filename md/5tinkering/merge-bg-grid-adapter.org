@@ -1,5 +1,6 @@
 #+TITLE: BLOG: Merged grid
 
+* Merged background seperators in 'RecyclerView' using 'GridLayoutManager'
 I don't really see tutorials, that you would get in trouble when trying to display items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
 For instance, have you tried using =ConcateAdapter= using adapters in a multiple span =GridLayoutManager=? Or just simply, using a regular =RecyclerView.Adapter= with =GridLayoutManager= to display items with separators instead of paddings?
@@ -26,7 +27,7 @@ How do we solve it? Well, few solutions, that come to mind. We either have to _c
 * Using separators (failed attempt)
 I'll say from the get-go, this did not work out for me after a couple of tries. If you're here only for the solution, move a bit downward.
 
-At first, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
+At #1, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
 
 It may seem to fix our problem, right? Well, *no*. This does not work, when trying to use it in =RecyclerView= + =GridLayoutManager=.
 
