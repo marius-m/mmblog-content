@@ -9,6 +9,8 @@ For instance, have you tried using =ConcateAdapter= using adapters in a multiple
 
 For the last couple of weeks I've seen quite a bit of adapters. So I wanted to share some of the take-aways 🤷
 
+Oh, and [[https://github.com/marius-m/merged-bg-grid-adapter][don't forget to checkout github repo for sample app]]!
+
 * Double separator issue
 Applying backgrounds to =RecyclerView.Adapter= items is /simple enough/. So where is the problem?
 

@@ -8,6 +8,8 @@ For instance, have you tried using `ConcateAdapter` using adapters in a multiple
 
 For the last couple of weeks I&rsquo;ve seen quite a bit of adapters. So I wanted to share some of the take-aways 🤷
 
+Oh, and [don&rsquo;t forget to checkout github repo for sample app](https://github.com/marius-m/merged-bg-grid-adapter)!
+
 
 # Double separator issue
 
