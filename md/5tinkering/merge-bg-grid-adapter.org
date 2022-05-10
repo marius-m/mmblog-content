@@ -1,0 +1,268 @@
+#+TITLE: BLOG: Merged grid
+
+I don't really see tutorials, that you would get in trouble when trying to display items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
+
+For instance, have you tried using =ConcateAdapter= using adapters in a multiple span =GridLayoutManager=? Or just simply, using a regular =RecyclerView.Adapter= with =GridLayoutManager= to display items with separators instead of paddings?
+
+For the last couple of weeks I've seen quite a bit of adapters. So I wanted to share some of the take-aways 🤷
+
+* Double separator issue
+Applying backgrounds to =RecyclerView.Adapter= items is /simple enough/. So where is the problem?
+
+Well, as always, /it depends/. If you have a list, where items are separated, there is no problem at all.
+
+[[file:imgs-merge-bg-grid/76AF33C7-04FC-42B1-80E9-407E18E0EC2A.png]]
+
+However it starts to be an issue, whenever the items become much closer. So close, as like having _no padding at all_. Then this happens 👇
+
+[[file:imgs-merge-bg-grid/422EDBB1-604B-4223-9514-055F39128275.png]]
+
+You get 'double lines' as separators. And this was what I was actually aiming for 👇
+
+[[file:imgs-merge-bg-grid/goal.png]]
+
+How do we solve it? Well, few solutions, that come to mind. We either have to _change backgrounds_ or use _separators_ that =RecyclerView= supports.
+
+* Using separators (failed attempt)
+I'll say from the get-go, this did not work out for me after a couple of tries. If you're here only for the solution, move a bit downward.
+
+At first, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
+
+It may seem to fix our problem, right? Well, *no*. This does not work, when trying to use it in =RecyclerView= + =GridLayoutManager=.
+
+First problem is that 'separators' are applied to the whole =RecyclerView=. So if you have =GridLayoutManager= with grid span of 2+, it would _apply separator to the whole section_.
+
+Problem #2, when you apply separators, _it applies only in the direction you are separating the items_. If you would try to modify the =RecyclerView= with =MaterialDividerItemDecoration=, it has no problem when scrolling in provided direction. However, it does if you would try to draw 'separators' on the direction, where the items do not scroll.
+
+Last nail in the coffin ⚰️ was when or if you're using =ConcatAdapter=. I won't go into too much detail, but this majorly breaks most of what you wanted to achieve.
+
+Even though I was not able to use seperators on my use-case. But I can't deny, _it was a good learning experience_. [[https://gist.github.com/marius-m/c8e39761bf054d645b548cd4f63a13c4][You can even try out using my updated separator if you wish so, as a starting point if you're adventorous enough]]. It is heavily 'insipred' by =MaterialDividerItemDecoration=.
+
+* Using different backgrounds (success 🙌)
+In some sense, this seems a bit counterintuitive and a more complicated solution than it should be. And I still think /this is the case/. However I did manage to get a working solution, that I'm quite happy about it. At least for now.
+
+** The trick
+
+The whole idea is simple.
+- We provide a different background to a cell, depending where the cell is.
+- The trick, is to provide a background line where only it is needed
+
+This is a bit difficult to explain in words, so I'll try to call my drawing superpowers 🦸.
+
+** Moving to the 1st item
+It's important to know _where is the first row_ and _where is the first item in the column_. For the first item we provide a background, which has all the corners drawn, like so.
+
+[[file:imgs-merge-bg-grid/0_0.png]]
+
+** Android shapes and sizes
+Oh, and almost forgot. *This is how you provide a background using Android shapes*. You'll need this, if you would like to control how you would draw different backgrouds with provided borders.
+
+- Declare an xml with a =shape= in ={project}/app/src/main/res/drawable/shape.xml=
+  #+begin_src xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+      <item>
+          <shape>
+              <padding android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp"/>
+              <solid android:color="@color/cardStroke" />
+          </shape>
+      </item>
+      <item>
+          <shape>
+              <solid android:color="@color/cardBackground" />
+          </shape>
+      </item>
+  </layer-list>
+  #+end_src
+- And use that background on any container (=ViewGroup=)
+  #+begin_src xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_ll_basic">
+
+    <!-- ☝️ Declated background-->
+
+    <... xml content ... />
+
+</FrameLayout>
+  #+end_src
+
+** Moving to the 👉..
+
+Next, we should define background for the item next to it. But, because _we already have a left bar in the background, we should append only top, bottom and right bars_. Like so 👇
+
+[[file:imgs-merge-bg-grid/0_1.png]]
+
+
+You're probably starting to /catch the drift/, how we're composing these backgrounds, by only appending bars only where it is needed.
+
+The coolest part about it, if we would have more items to the right, we would only need to apply the same background - _top, bottom and right bars_. Like so
+
+[[file:imgs-merge-bg-grid/0_merge.png]]
+
+** Moving to the 👇
+Alright, now that we know how to display whole row, we need to move downwards.
+
+Once again, the most important thing, is to know _which item is first_. As we know, that this is not the first row, we already have a top bar. So, what we need is _left, right, bottom bars_.
+
+[[file:imgs-merge-bg-grid/1_0.png]]
+
+And the rest of the items on the right would require only _left and bottom, as we already have a top and left bars_.
+
+[[file:imgs-merge-bg-grid/1_1.png]]
+
+And this works really well, for the rest of the items as well, if we would provide more items in the grid 👇
+
+[[file:imgs-merge-bg-grid/1_merge.png]]
+
+** The code
+Now that we know basic premise what we're aiming for, lets see how do we implement the =RecyclerView.Adapter=. The coolest part, is that there not much of logic here. As stated before, we only need to figure out
+
+- Is item in the first row
+  #+begin_src kotlin
+private fun isItemInFirstRow(pos: Int): Boolean {
+    return pos <= gridSpanSize - 1
+}
+  #+end_src
+- Is the item first in column
+  #+begin_src
+private fun isItemInFirstColumn(pos: Int): Boolean {
+    return pos % gridSpanSize == 0
+}
+  #+end_src
+
+The rest of the adapter looks nothing out of ordinary.
+
+#+begin_src kotlin
+class MergeAdapter<T : BasicAdapterItem>(
+    private val gridSpanSize: Int,
+    private val itemClickListener: ((BasicAdapterItem) -> Unit)? = null,
+) : RecyclerView.Adapter<MergeAdapterViewHolder<T>>(), ItemBoundableAdapter<T> {
+
+    override var items: List<T> by Delegates.observable(emptyList()) { _, oldList, newList ->
+        autoNotify(oldList, newList) { o, n -> o.id == n.id }
+    }
+
+    override fun onCreateViewHolder(
+        viewGroup: ViewGroup,
+        viewType: Int
+    ): MergeAdapterViewHolder<T> {
+        return MergeAdapterViewHolder.create(viewGroup)
+    }
+
+    override fun onBindViewHolder(
+        holder: MergeAdapterViewHolder<T>,
+        position: Int,
+    ) {
+        val isItemInFirstRow = isItemInFirstRow(position)
+        val isItemInFirstColumn = isItemInFirstColumn(position)
+        val item = items[position]
+        holder.bind(
+            isItemInFirstRow,
+            isItemInFirstColumn,
+            item,
+            itemClickListener
+        )
+    }
+
+    /**
+     * @return item position is in the first row
+     */
+    private fun isItemInFirstRow(pos: Int): Boolean {
+        return pos <= gridSpanSize - 1
+    }
+
+    /**
+     * @return item position is in the first column, when on different rows
+     */
+    private fun isItemInFirstColumn(pos: Int): Boolean {
+        return pos % gridSpanSize == 0
+    }
+
+    override fun getItemCount(): Int = items.size
+}
+#+end_src
+
+
+Now we provide the resolved properties to the =ViewHolder= to take care of drawing items.
+
+- Snippet to apply the background
+  #+begin_src kotlin
+ /**
+ * Provides diff background based on item position in the grid
+ * @param isFirstRow item is in the first row of the grid
+ * @param isFirstColumn item is in the first column of the row
+ */
+@DrawableRes
+private fun bgResourceByPosition(
+    isFirstRow: Boolean,
+    isFirstColumn: Boolean,
+): Int {
+    return when {
+        isFirstRow && isFirstColumn -> R.drawable.shape_ll_merge_row_column_first
+        isFirstRow && !isFirstColumn -> R.drawable.shape_ll_merge_row_column_last
+        isFirstColumn -> R.drawable.shape_ll_merge_column_first
+        else -> R.drawable.shape_ll_merge_column_last
+    }
+}
+  #+end_src
+- Rest of the =ViewHolder= is nothing out of ordinary
+  #+begin_src kotlin
+class MergeAdapterViewHolder<T : BasicAdapterItem>(
+    private val binding: ItemMergedBinding,
+) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        isFirstRow: Boolean,
+        isFirstColumn: Boolean,
+        item: T,
+        itemClickListener: ((T) -> Unit)?
+    ) {
+        val viewClickListener = toViewClickListenerOrNull(item, itemClickListener)
+        binding.root.setOnClickListener(viewClickListener)
+        binding.title.text = item.title
+        binding.root.setBackgroundResource(bgResourceByPosition(isFirstRow, isFirstColumn))
+    }
+
+    /**
+     * Provides diff background based on item position in the grid
+     * @param isFirstRow item is in the first row of the grid
+     * @param isFirstColumn item is in the first column of the row
+     */
+    @DrawableRes
+    private fun bgResourceByPosition(
+        isFirstRow: Boolean,
+        isFirstColumn: Boolean,
+    ): Int {
+        return when {
+            isFirstRow && isFirstColumn -> R.drawable.shape_ll_merge_row_column_first
+            isFirstRow && !isFirstColumn -> R.drawable.shape_ll_merge_row_column_last
+            isFirstColumn -> R.drawable.shape_ll_merge_column_first
+            else -> R.drawable.shape_ll_merge_column_last
+        }
+    }
+
+    companion object {
+        fun <T : BasicAdapterItem> create(viewGroup: ViewGroup): MergeAdapterViewHolder<T> {
+            return MergeAdapterViewHolder(
+                binding = ItemMergedBinding.inflate(
+                    LayoutInflater.from(viewGroup.context),
+                    viewGroup,
+                    false
+                )
+            )
+        }
+    }
+}
+  #+end_src
+
+As always, if the code snippets are not enough, [[https://github.com/marius-m/merged-bg-grid-adapter][check out sample app on github and try it yourself]]! It has basic adapters, adapters with paddings and merged background adapters (what we were trying to do here) to try out 💪.
+
+* Ending notes
+Now. This is not exactly /rocket science/ for sure. However I did not think twice, when picking up the task. Only by starting to dig deeper, I have found out, how many parts I need to figure out first, for the designs to be accurate.
+
+Hopefully this will be useful for you as well and you won't need to spend so much time as I did 🤷🚀.
