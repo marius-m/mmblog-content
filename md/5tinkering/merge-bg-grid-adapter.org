@@ -1,6 +1,8 @@
 #+TITLE: BLOG: Merged grid
 
-* Merged background seperators in 'RecyclerView' using 'GridLayoutManager'
+* Merging adapter BGs
+..or how to use 'Shapes' in Android to use merged backgrounds in =RecyclerView.Adapter= when using =GridLayoutManager=. Good thing the title is not long enough 🤦
+
 I don't really see tutorials, that you would get in trouble when trying to display items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
 For instance, have you tried using =ConcateAdapter= using adapters in a multiple span =GridLayoutManager=? Or just simply, using a regular =RecyclerView.Adapter= with =GridLayoutManager= to display items with separators instead of paddings?

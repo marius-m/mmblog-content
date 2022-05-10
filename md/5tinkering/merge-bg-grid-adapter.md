@@ -1,4 +1,6 @@
-# Merged background seperators in &rsquo;RecyclerView&rsquo; using &rsquo;GridLayoutManager&rsquo;
+# Merging adapter BGs
+
+..or how to use &rsquo;Shapes&rsquo; in Android to use merged backgrounds in `RecyclerView.Adapter` when using `GridLayoutManager`. Good thing the title is not long enough 🤦
 
 I don&rsquo;t really see tutorials, that you would get in trouble when trying to display items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
@@ -30,7 +32,7 @@ How do we solve it? Well, few solutions, that come to mind. We either have to <s
 
 I&rsquo;ll say from the get-go, this did not work out for me after a couple of tries. If you&rsquo;re here only for the solution, move a bit downward.
 
-At first, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
+At #1, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
 
 It may seem to fix our problem, right? Well, **no**. This does not work, when trying to use it in `RecyclerView` + `GridLayoutManager`.
 
