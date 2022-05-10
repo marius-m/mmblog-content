@@ -31,14 +31,17 @@ How do we solve it? Well, few solutions, that come to mind. We either have to _c
 * Using separators (failed attempt)
 I'll say from the get-go, this did not work out for me after a couple of tries. If you're here only for the solution, move a bit downward.
 
+** Issue #1
 At #1, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
 
 It may seem to fix our problem, right? Well, *no*. This does not work, when trying to use it in =RecyclerView= + =GridLayoutManager=.
 
 First problem is that 'separators' are applied to the whole =RecyclerView=. So if you have =GridLayoutManager= with grid span of 2+, it would _apply separator to the whole section_.
 
+** Issue #2
 Problem #2, when you apply separators, _it applies only in the direction you are separating the items_. If you would try to modify the =RecyclerView= with =MaterialDividerItemDecoration=, it has no problem when scrolling in provided direction. However, it does if you would try to draw 'separators' on the direction, where the items do not scroll.
 
+** Issue #13489579817235
 Last nail in the coffin ⚰️ was when or if you're using =ConcatAdapter=. I won't go into too much detail, but this majorly breaks most of what you wanted to achieve.
 
 Even though I was not able to use seperators on my use-case. But I can't deny, _it was a good learning experience_. [[https://gist.github.com/marius-m/c8e39761bf054d645b548cd4f63a13c4][You can even try out using my updated separator if you wish so, as a starting point if you're adventorous enough]]. It is heavily 'insipred' by =MaterialDividerItemDecoration=.
@@ -50,14 +53,9 @@ In some sense, this seems a bit counterintuitive and a more complicated solution
 
 The whole idea is simple.
 - We provide a different background to a cell, depending where the cell is.
-- The trick, is to provide a background line where only it is needed
+- Provide a background line where only it is needed
 
 This is a bit difficult to explain in words, so I'll try to call my drawing superpowers 🦸.
-
-** Moving to the 1st item
-It's important to know _where is the first row_ and _where is the first item in the column_. For the first item we provide a background, which has all the corners drawn, like so.
-
-[[file:imgs/0_0.png]]
 
 ** Android shapes and sizes
 Oh, and almost forgot. *This is how you provide a background using Android shapes*. You'll need this, if you would like to control how you would draw different backgrouds with provided borders.
@@ -96,7 +94,12 @@ Oh, and almost forgot. *This is how you provide a background using Android shape
 </FrameLayout>
   #+end_src
 
-** Moving to the 👉..
+** Moving to the 1st item
+It's important to know _where is the first row_ and _where is the first item in the column_. For the first item we provide a background, which has all the corners drawn, like so.
+
+[[file:imgs/0_0.png]]
+
+** Moving to the right 👉
 
 Next, we should define background for the item next to it. But, because _we already have a left bar in the background, we should append only top, bottom and right bars_. Like so 👇
 
@@ -109,7 +112,7 @@ The coolest part about it, if we would have more items to the right, we would on
 
 [[file:imgs/0_merge.png]]
 
-** Moving to the 👇
+** Moving downward👇
 Alright, now that we know how to display whole row, we need to move downwards.
 
 Once again, the most important thing, is to know _which item is first_. As we know, that this is not the first row, we already have a top bar. So, what we need is _left, right, bottom bars_.

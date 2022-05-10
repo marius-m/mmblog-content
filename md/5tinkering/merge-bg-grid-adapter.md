@@ -34,13 +34,22 @@ How do we solve it? Well, few solutions, that come to mind. We either have to <s
 
 I&rsquo;ll say from the get-go, this did not work out for me after a couple of tries. If you&rsquo;re here only for the solution, move a bit downward.
 
+
+## Issue #1
+
 At #1, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
 
 It may seem to fix our problem, right? Well, **no**. This does not work, when trying to use it in `RecyclerView` + `GridLayoutManager`.
 
 First problem is that &rsquo;separators&rsquo; are applied to the whole `RecyclerView`. So if you have `GridLayoutManager` with grid span of 2+, it would <span class="underline">apply separator to the whole section</span>.
 
+
+## Issue #2
+
 Problem #2, when you apply separators, <span class="underline">it applies only in the direction you are separating the items</span>. If you would try to modify the `RecyclerView` with `MaterialDividerItemDecoration`, it has no problem when scrolling in provided direction. However, it does if you would try to draw &rsquo;separators&rsquo; on the direction, where the items do not scroll.
+
+
+## Issue #13489579817235
 
 Last nail in the coffin ⚰️ was when or if you&rsquo;re using `ConcatAdapter`. I won&rsquo;t go into too much detail, but this majorly breaks most of what you wanted to achieve.
 
@@ -57,16 +66,9 @@ In some sense, this seems a bit counterintuitive and a more complicated solution
 The whole idea is simple.
 
 -   We provide a different background to a cell, depending where the cell is.
--   The trick, is to provide a background line where only it is needed
+-   Provide a background line where only it is needed
 
 This is a bit difficult to explain in words, so I&rsquo;ll try to call my drawing superpowers 🦸.
-
-
-## Moving to the 1st item
-
-It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item we provide a background, which has all the corners drawn, like so.
-
-![img](imgs/0_0.png)
 
 
 ## Android shapes and sizes
@@ -110,7 +112,14 @@ Oh, and almost forgot. **This is how you provide a background using Android shap
     ```
 
 
-## Moving to the 👉..
+## Moving to the 1st item
+
+It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item we provide a background, which has all the corners drawn, like so.
+
+![img](imgs/0_0.png)
+
+
+## Moving to the right 👉
 
 Next, we should define background for the item next to it. But, because <span class="underline">we already have a left bar in the background, we should append only top, bottom and right bars</span>. Like so 👇
 
@@ -123,7 +132,7 @@ The coolest part about it, if we would have more items to the right, we would on
 ![img](imgs/0_merge.png)
 
 
-## Moving to the 👇
+## Moving downward👇
 
 Alright, now that we know how to display whole row, we need to move downwards.
 
