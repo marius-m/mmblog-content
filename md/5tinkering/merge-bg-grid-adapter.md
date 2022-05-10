@@ -17,15 +17,15 @@ Applying backgrounds to `RecyclerView.Adapter` items is *simple enough*. So wher
 
 Well, as always, *it depends*. If you have a list, where items are separated, there is no problem at all.
 
-![img](imgs-merge-bg-grid/76AF33C7-04FC-42B1-80E9-407E18E0EC2A.png)
+![img](imgs/76AF33C7-04FC-42B1-80E9-407E18E0EC2A.png)
 
 However it starts to be an issue, whenever the items become much closer. So close, as like having <span class="underline">no padding at all</span>. Then this happens 👇
 
-![img](imgs-merge-bg-grid/422EDBB1-604B-4223-9514-055F39128275.png)
+![img](imgs/422EDBB1-604B-4223-9514-055F39128275.png)
 
 You get &rsquo;double lines&rsquo; as separators. And this was what I was actually aiming for 👇
 
-![img](imgs-merge-bg-grid/goal.png)
+![img](imgs/goal.png)
 
 How do we solve it? Well, few solutions, that come to mind. We either have to <span class="underline">change backgrounds</span> or use <span class="underline">separators</span> that `RecyclerView` supports.
 
@@ -66,7 +66,7 @@ This is a bit difficult to explain in words, so I&rsquo;ll try to call my drawin
 
 It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item we provide a background, which has all the corners drawn, like so.
 
-![img](imgs-merge-bg-grid/0_0.png)
+![img](imgs/0_0.png)
 
 
 ## Android shapes and sizes
@@ -114,13 +114,13 @@ Oh, and almost forgot. **This is how you provide a background using Android shap
 
 Next, we should define background for the item next to it. But, because <span class="underline">we already have a left bar in the background, we should append only top, bottom and right bars</span>. Like so 👇
 
-![img](imgs-merge-bg-grid/0_1.png)
+![img](imgs/0_1.png)
 
 You&rsquo;re probably starting to *catch the drift*, how we&rsquo;re composing these backgrounds, by only appending bars only where it is needed.
 
 The coolest part about it, if we would have more items to the right, we would only need to apply the same background - <span class="underline">top, bottom and right bars</span>. Like so
 
-![img](imgs-merge-bg-grid/0_merge.png)
+![img](imgs/0_merge.png)
 
 
 ## Moving to the 👇
@@ -129,15 +129,15 @@ Alright, now that we know how to display whole row, we need to move downwards.
 
 Once again, the most important thing, is to know <span class="underline">which item is first</span>. As we know, that this is not the first row, we already have a top bar. So, what we need is <span class="underline">left, right, bottom bars</span>.
 
-![img](imgs-merge-bg-grid/1_0.png)
+![img](imgs/1_0.png)
 
 And the rest of the items on the right would require only <span class="underline">left and bottom, as we already have a top and left bars</span>.
 
-![img](imgs-merge-bg-grid/1_1.png)
+![img](imgs/1_1.png)
 
 And this works really well, for the rest of the items as well, if we would provide more items in the grid 👇
 
-![img](imgs-merge-bg-grid/1_merge.png)
+![img](imgs/1_merge.png)
 
 
 ## The code

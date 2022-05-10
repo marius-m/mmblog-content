@@ -16,15 +16,15 @@ Applying backgrounds to =RecyclerView.Adapter= items is /simple enough/. So wher
 
 Well, as always, /it depends/. If you have a list, where items are separated, there is no problem at all.
 
-[[file:imgs-merge-bg-grid/76AF33C7-04FC-42B1-80E9-407E18E0EC2A.png]]
+[[file:imgs/76AF33C7-04FC-42B1-80E9-407E18E0EC2A.png]]
 
 However it starts to be an issue, whenever the items become much closer. So close, as like having _no padding at all_. Then this happens 👇
 
-[[file:imgs-merge-bg-grid/422EDBB1-604B-4223-9514-055F39128275.png]]
+[[file:imgs/422EDBB1-604B-4223-9514-055F39128275.png]]
 
 You get 'double lines' as separators. And this was what I was actually aiming for 👇
 
-[[file:imgs-merge-bg-grid/goal.png]]
+[[file:imgs/goal.png]]
 
 How do we solve it? Well, few solutions, that come to mind. We either have to _change backgrounds_ or use _separators_ that =RecyclerView= supports.
 
@@ -57,7 +57,7 @@ This is a bit difficult to explain in words, so I'll try to call my drawing supe
 ** Moving to the 1st item
 It's important to know _where is the first row_ and _where is the first item in the column_. For the first item we provide a background, which has all the corners drawn, like so.
 
-[[file:imgs-merge-bg-grid/0_0.png]]
+[[file:imgs/0_0.png]]
 
 ** Android shapes and sizes
 Oh, and almost forgot. *This is how you provide a background using Android shapes*. You'll need this, if you would like to control how you would draw different backgrouds with provided borders.
@@ -100,29 +100,29 @@ Oh, and almost forgot. *This is how you provide a background using Android shape
 
 Next, we should define background for the item next to it. But, because _we already have a left bar in the background, we should append only top, bottom and right bars_. Like so 👇
 
-[[file:imgs-merge-bg-grid/0_1.png]]
+[[file:imgs/0_1.png]]
 
 
 You're probably starting to /catch the drift/, how we're composing these backgrounds, by only appending bars only where it is needed.
 
 The coolest part about it, if we would have more items to the right, we would only need to apply the same background - _top, bottom and right bars_. Like so
 
-[[file:imgs-merge-bg-grid/0_merge.png]]
+[[file:imgs/0_merge.png]]
 
 ** Moving to the 👇
 Alright, now that we know how to display whole row, we need to move downwards.
 
 Once again, the most important thing, is to know _which item is first_. As we know, that this is not the first row, we already have a top bar. So, what we need is _left, right, bottom bars_.
 
-[[file:imgs-merge-bg-grid/1_0.png]]
+[[file:imgs/1_0.png]]
 
 And the rest of the items on the right would require only _left and bottom, as we already have a top and left bars_.
 
-[[file:imgs-merge-bg-grid/1_1.png]]
+[[file:imgs/1_1.png]]
 
 And this works really well, for the rest of the items as well, if we would provide more items in the grid 👇
 
-[[file:imgs-merge-bg-grid/1_merge.png]]
+[[file:imgs/1_merge.png]]
 
 ** The code
 Now that we know basic premise what we're aiming for, lets see how do we implement the =RecyclerView.Adapter=. The coolest part, is that there not much of logic here. As stated before, we only need to figure out
