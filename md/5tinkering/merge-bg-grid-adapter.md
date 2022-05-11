@@ -2,24 +2,24 @@
 
 ..or how to use &rsquo;Shapes&rsquo; in Android to use merged backgrounds in `RecyclerView.Adapter` when using `GridLayoutManager`. Good thing the title is not long enough 🤦
 
-I don&rsquo;t really see tutorials, that you would get in trouble when trying to display items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
+I don&rsquo;t see tutorials where you would get in trouble when displaying items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
-For instance, have you tried using `ConcateAdapter` using adapters in a multiple span `GridLayoutManager`? Or just simply, using a regular `RecyclerView.Adapter` with `GridLayoutManager` to display items with separators instead of paddings?
+For instance, have you tried using `ConcateAdapter` using adapters in a multiple spans `GridLayoutManager`? Or just simply using a regular `RecyclerView.Adapter` with `GridLayoutManager` to display items with separators instead of paddings?
 
-For the last couple of weeks I&rsquo;ve seen quite a bit of adapters. So I wanted to share some of the take-aways 🤷
+For the last couple of weeks, I&rsquo;ve seen quite a bit of adapters. So I wanted to share some of the take-aways 🤷
 
-Oh, and [don&rsquo;t forget to checkout github repo for sample app](https://github.com/marius-m/merged-bg-grid-adapter)!
+Oh, and [don&rsquo;t forget to check out Github repo for the sample app](https://github.com/marius-m/merged-bg-grid-adapter)!
 
 
 # Double separator issue
 
-Applying backgrounds to `RecyclerView.Adapter` items is *simple enough*. So where is the problem?
+To apply backgrounds to `RecyclerView.Adapter` items are *simple enough*. So, where is the problem?
 
-Well, as always, *it depends*. If you have a list, where items are separated, there is no problem at all.
+Well, as always, *it depends*. If you have a list where items are separated, there is no problem.
 
 ![img](imgs/76AF33C7-04FC-42B1-80E9-407E18E0EC2A.png)
 
-However it starts to be an issue, whenever the items become much closer. So close, as like having <span class="underline">no padding at all</span>. Then this happens 👇
+However, it starts to be an issue whenever the items become much closer. So close, as like having <span class="underline">no padding at all</span>. Then this happens 👇
 
 ![img](imgs/422EDBB1-604B-4223-9514-055F39128275.png)
 
@@ -27,53 +27,53 @@ You get &rsquo;double lines&rsquo; as separators. And this was what I was actual
 
 ![img](imgs/goal.png)
 
-How do we solve it? Well, few solutions, that come to mind. We either have to <span class="underline">change backgrounds</span> or use <span class="underline">separators</span> that `RecyclerView` supports.
+How do we solve it? Well, a few solutions come to mind. We either have to <span class="underline">change backgrounds</span> or use <span class="underline">separators</span> that `RecyclerView` supports.
 
 
 # Using separators (failed attempt)
 
-I&rsquo;ll say from the get-go, this did not work out for me after a couple of tries. If you&rsquo;re here only for the solution, move a bit downward.
+I&rsquo;ll say from the get-go that this did not work out for me after a couple of tries. If you&rsquo;re here only for the solution, move a bit downward.
 
 
 ## Issue #1
 
-At #1, separators seem like a go-to solution. Actually, even the name tells us as much 🤷.
+At #1, separators seem like a go-to solution. Even the name tells us as much 🤷.
 
-It may seem to fix our problem, right? Well, **no**. This does not work, when trying to use it in `RecyclerView` + `GridLayoutManager`.
+It may seem to fix our problem, right? Well, **no**. This does not work when trying to use it in `RecyclerView` + `GridLayoutManager`.
 
-First problem is that &rsquo;separators&rsquo; are applied to the whole `RecyclerView`. So if you have `GridLayoutManager` with grid span of 2+, it would <span class="underline">apply separator to the whole section</span>.
+The first problem is that &rsquo;separators&rsquo; are applied to the whole `RecyclerView`. So if you have `GridLayoutManager` with a grid span of 2+, it would <span class="underline">use a separator for the entire section</span>.
 
 
 ## Issue #2
 
-Problem #2, when you apply separators, <span class="underline">it applies only in the direction you are separating the items</span>. If you would try to modify the `RecyclerView` with `MaterialDividerItemDecoration`, it has no problem when scrolling in provided direction. However, it does if you would try to draw &rsquo;separators&rsquo; on the direction, where the items do not scroll.
+Problem #2, when you apply separators, <span class="underline">it applies only in the direction you are separating the items</span>. If you try to modify the `RecyclerView` with `MaterialDividerItemDecoration`, it has no problem when scrolling in provided direction. However, it does if you would try to draw &rsquo;separators&rsquo; in the direction where the items do not scroll.
 
 
 ## Issue #13489579817235
 
-Last nail in the coffin ⚰️ was when or if you&rsquo;re using `ConcatAdapter`. I won&rsquo;t go into too much detail, but this majorly breaks most of what you wanted to achieve.
+The last nail in the coffin ⚰️ was when or if you&rsquo;re using `ConcatAdapter`. I won&rsquo;t go into too much detail, but this majorly breaks most of what you wanted to achieve.
 
-Even though I was not able to use seperators on my use-case. But I can&rsquo;t deny, <span class="underline">it was a good learning experience</span>. [You can even try out using my updated separator if you wish so, as a starting point if you&rsquo;re adventorous enough](https://gist.github.com/marius-m/c8e39761bf054d645b548cd4f63a13c4). It is heavily &rsquo;insipred&rsquo; by `MaterialDividerItemDecoration`.
+Even though I could not use separators on my use case, but I can&rsquo;t deny that <span class="underline">it was a good learning experience</span>. [You can even try out using my updated separator if you wish so, as a starting point if you&rsquo;re adventurous enough](https://gist.github.com/marius-m/c8e39761bf054d645b548cd4f63a13c4). It is heavily &rsquo;inspired&rsquo; by `MaterialDividerItemDecoration`.
 
 
 # Using different backgrounds (success 🙌)
 
-In some sense, this seems a bit counterintuitive and a more complicated solution than it should be. And I still think *this is the case*. However I did manage to get a working solution, that I&rsquo;m quite happy about it. At least for now.
+In some sense, this seems a bit counterintuitive and a more complicated solution than it should be. And I still think *this is the case*. However, I did manage to get a working solution and I&rsquo;m pretty happy about it. At least for now.
 
 
 ## The trick
 
 The whole idea is simple.
 
--   We provide a different background to a cell, depending where the cell is.
+-   We provide a different background to a cell, depending on where the cell is.
 -   Provide a background line where only it is needed
 
-This is a bit difficult to explain in words, so I&rsquo;ll try to call my drawing superpowers 🦸.
+It is a bit difficult to explain in words, so I&rsquo;ll try to call my drawing superpowers 🦸.
 
 
-## Android shapes and sizes
+## Drawing Android shapes
 
-Oh, and almost forgot. **This is how you provide a background using Android shapes**. You&rsquo;ll need this, if you would like to control how you would draw different backgrouds with provided borders.
+Oh, and I almost forgot. **This is how you provide a background using Android shapes**. If you want to control how you draw different backgrounds with provided borders, you&rsquo;ll need this.
 
 -   Declare an xml with a `shape` in `{project}/app/src/main/res/drawable/shape.xml`
     
@@ -104,7 +104,7 @@ Oh, and almost forgot. **This is how you provide a background using Android shap
         android:layout_height="wrap_content"
         android:background="@drawable/shape_ll_basic">
     
-        <!-- ☝️ Declated background-->
+        <!-- ☝️ Declared background-->
     
         <... xml content ... />
     
@@ -114,46 +114,46 @@ Oh, and almost forgot. **This is how you provide a background using Android shap
 
 ## Moving to the 1st item
 
-It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item we provide a background, which has all the corners drawn, like so.
+It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item, we provide a background, that has all the corners drawn. Like so.
 
 ![img](imgs/0_0.png)
 
 
 ## Moving to the right 👉
 
-Next, we should define background for the item next to it. But, because <span class="underline">we already have a left bar in the background, we should append only top, bottom and right bars</span>. Like so 👇
+Next, we should define the background for the item next to it. But, because <span class="underline">we already have a left bar in the background, we should append only top, bottom, and right bars</span>. Like so 👇
 
 ![img](imgs/0_1.png)
 
-You&rsquo;re probably starting to *catch the drift*, how we&rsquo;re composing these backgrounds, by only appending bars only where it is needed.
+You&rsquo;re probably starting to *catch the drift* of how we&rsquo;re composing these backgrounds by <span class="underline">only appending bars only where it is needed</span>.
 
-The coolest part about it, if we would have more items to the right, we would only need to apply the same background - <span class="underline">top, bottom and right bars</span>. Like so
+The coolest part about it, if we had more items to the right, we would only need to apply the same background - <span class="underline">top, bottom, and right bars</span>. Like so
 
 ![img](imgs/0_merge.png)
 
 
 ## Moving downward👇
 
-Alright, now that we know how to display whole row, we need to move downwards.
+Alright. Now that we know how to display the whole row, we need to move downwards.
 
-Once again, the most important thing, is to know <span class="underline">which item is first</span>. As we know, that this is not the first row, we already have a top bar. So, what we need is <span class="underline">left, right, bottom bars</span>.
+Once again, the most important thing is to know <span class="underline">which item is first</span>. As we know, this is not the first row, and we already have a top bar. So, what we need are <span class="underline">left, right, and bottom bars</span>.
 
 ![img](imgs/1_0.png)
 
-And the rest of the items on the right would require only <span class="underline">left and bottom, as we already have a top and left bars</span>.
+And the rest of the items on the right would require only <span class="underline">left and bottom, as we already have top and left bars</span>.
 
 ![img](imgs/1_1.png)
 
-And this works really well, for the rest of the items as well, if we would provide more items in the grid 👇
+And this works really well for the rest of the items as well if we would provide more items in the grid 👇
 
 ![img](imgs/1_merge.png)
 
 
 ## The code
 
-Now that we know basic premise what we&rsquo;re aiming for, lets see how do we implement the `RecyclerView.Adapter`. The coolest part, is that there not much of logic here. As stated before, we only need to figure out
+Now that we know the basic premise of what we&rsquo;re aiming for let us see how we implement the `RecyclerView.Adapter`. The coolest part is that there is not much logic here. As stated before, we only need to figure out
 
--   Is item in the first row
+-   Is the item in the first row
     
     ```kotlin
     private fun isItemInFirstRow(pos: Int): Boolean {
@@ -162,7 +162,7 @@ Now that we know basic premise what we&rsquo;re aiming for, lets see how do we i
     ```
 -   Is the item first in column
     
-    ```
+    ```kotlin
     private fun isItemInFirstColumn(pos: Int): Boolean {
         return pos % gridSpanSize == 0
     }
@@ -220,7 +220,7 @@ class MergeAdapter<T : BasicAdapterItem>(
 }
 ```
 
-Now we provide the resolved properties to the `ViewHolder` to take care of drawing items.
+Now we provide the resolved properties to the `ViewHolder` to draw items.
 
 -   Snippet to apply the background
     
@@ -294,11 +294,11 @@ Now we provide the resolved properties to the `ViewHolder` to take care of drawi
     }
     ```
 
-As always, if the code snippets are not enough, [check out sample app on github and try it yourself](https://github.com/marius-m/merged-bg-grid-adapter)! It has basic adapters, adapters with paddings and merged background adapters (what we were trying to do here) to try out 💪.
+As always, if the code snippets are not enough, [check out the sample app on Github and try it yourself](https://github.com/marius-m/merged-bg-grid-adapter)! It has basic adapters, adapters with paddings, and merged background adapters (what we were trying to do here) to try out 💪.
 
 
 # Ending notes
 
-Now. This is not exactly *rocket science* for sure. However I did not think twice, when picking up the task. Only by starting to dig deeper, I have found out, how many parts I need to figure out first, for the designs to be accurate.
+Now. This is not exactly *rocket science* for sure. However, I did not think twice when picking up the task. By starting to dig deeper, I have realized how many parts I need to figure out first for the designs to be accurate.
 
-Hopefully this will be useful for you as well and you won&rsquo;t need to spend so much time as I did 🤷🚀.
+Hopefully, this will be useful for you as well, and you won&rsquo;t need to spend so much time as I did 🤷🚀.
