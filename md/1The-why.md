@@ -14,6 +14,6 @@ Not sure if it&rsquo;ll be somewhat useful for anyone. But I guess, not everythi
 
 And that is my type of garden 👇 I&rsquo;ll be planting in this garder
 
-![img](flower.jpg)
+![img](api/imgs/flower.jpg)
 
 Courtesy of [eb.perler [at] pinterest](https://www.pinterest.com/pin/364510163568720151/)
