@@ -1,5 +1,6 @@
 #+TITLE: BLOG: Merged grid
 
+# This approach is not needed if there is not a grid. If we use one column, dividers + background on RecyclerView works as well
 * How to meld item backgrounds together in RecyclerView.Adapter
 ..or how to use 'Shapes' in Android to use merged backgrounds in =RecyclerView.Adapter= when using =GridLayoutManager=. Good thing the title is not long enough 🤦
 
@@ -63,24 +64,27 @@ It is a bit difficult to explain in words, so I'll try to call my drawing superp
 Oh, and I almost forgot. *This is how you provide a background using Android shapes*. If you want to control how you draw different backgrounds with provided borders, you'll need this.
 
 - Declare an xml with a =shape= in ={project}/app/src/main/res/drawable/shape.xml=
-  #+begin_src xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-      <item>
-          <shape>
-              <padding android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp"/>
-              <solid android:color="@color/cardStroke" />
-          </shape>
-      </item>
-      <item>
-          <shape>
-              <solid android:color="@color/cardBackground" />
-          </shape>
-      </item>
-  </layer-list>
-  #+end_src
+
+#+begin_src xml
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <padding android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp"/>
+            <solid android:color="@color/cardStroke" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="@color/cardBackground" />
+        </shape>
+    </item>
+</layer-list>
+#+end_src
+
 - And use that background on any container (=ViewGroup=)
-  #+begin_src xml
+
+#+begin_src xml
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -94,7 +98,7 @@ Oh, and I almost forgot. *This is how you provide a background using Android sha
     <... xml content ... />
 
 </FrameLayout>
-  #+end_src
+#+end_src
 
 ** Moving to the 1st item
 It's important to know _where is the first row_ and _where is the first item in the column_. For the first item, we provide a background that has all the corners drawn. Like so.

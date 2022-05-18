@@ -78,40 +78,41 @@ It is a bit difficult to explain in words, so I&rsquo;ll try to call my drawing 
 Oh, and I almost forgot. **This is how you provide a background using Android shapes**. If you want to control how you draw different backgrounds with provided borders, you&rsquo;ll need this.
 
 -   Declare an xml with a `shape` in `{project}/app/src/main/res/drawable/shape.xml`
-    
-    ```xml
-      <?xml version="1.0" encoding="utf-8"?>
-      <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-          <item>
-              <shape>
-                  <padding android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp"/>
-                  <solid android:color="@color/cardStroke" />
-              </shape>
-          </item>
-          <item>
-              <shape>
-                  <solid android:color="@color/cardBackground" />
-              </shape>
-          </item>
-      </layer-list>
-    ```
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <padding android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp"/>
+            <solid android:color="@color/cardStroke" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="@color/cardBackground" />
+        </shape>
+    </item>
+</layer-list>
+```
+
 -   And use that background on any container (`ViewGroup`)
-    
-    ```xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_ll_basic">
-    
-        <!-- ☝️ Declared background-->
-    
-        <... xml content ... />
-    
-    </FrameLayout>
-    ```
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_ll_basic">
+
+    <!-- ☝️ Declared background-->
+
+    <... xml content ... />
+
+</FrameLayout>
+```
 
 
 ## Moving to the 1st item
