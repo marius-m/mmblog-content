@@ -1,9 +1,7 @@
 #+TITLE: BLOG: Merged grid
 
 # This approach is not needed if there is not a grid. If we use one column, dividers + background on RecyclerView works as well
-* How to meld item backgrounds together in RecyclerView.Adapter
-..or how to use 'Shapes' in Android to use merged backgrounds in =RecyclerView.Adapter= when using =GridLayoutManager=. Good thing the title is not long enough 🤦
-
+* How to meld item backgrounds together in RecyclerView.Adapter + GridLayoutManager
 I don't see many tutorials where you would /get in trouble/ when displaying items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
 For instance, have you tried using =ConcateAdapter= using adapters in a multiple spans =GridLayoutManager=? Or just simply using a regular =RecyclerView.Adapter= with =GridLayoutManager= to display items with separators instead of paddings?
@@ -280,6 +278,14 @@ class MergeAdapterViewHolder<T : BasicAdapterItem>(
 #+end_src
 
 As always, if the code snippets are not enough, [[https://github.com/marius-m/merged-bg-grid-adapter][check out the sample app on Github and try it yourself]]! It has basic adapters, adapters with paddings, and merged background adapters (what we were trying to do here) to try out 💪.
+* Using LayoutManager
+What about using =LinearLayoutManager=? Is this still relevant? It could be if you wanted to 🤷 However there seems to be better ways of solving this.
+1. Apply a background to the whole =RecyclerView= with all the corners bars
+2. Apply =ItemDecorator= separator for the items to be split
+
+And you should be good to go.
+
+However I'm not entirely sure this'll work when using =ConcatAdapter= 🤔
 
 * Ending notes
 Now. This is not exactly /rocket science/ for sure. However, I did not think twice when picking up the task. By starting to dig deeper, I have realized how many parts I need to figure out first for the designs to be accurate.

@@ -1,6 +1,4 @@
-# How to meld item backgrounds together in RecyclerView.Adapter
-
-..or how to use &rsquo;Shapes&rsquo; in Android to use merged backgrounds in `RecyclerView.Adapter` when using `GridLayoutManager`. Good thing the title is not long enough 🤦
+# How to meld item backgrounds together in RecyclerView.Adapter + GridLayoutManager
 
 I don&rsquo;t see many tutorials where you would *get in trouble* when displaying items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
@@ -300,6 +298,18 @@ class MergeAdapterViewHolder<T : BasicAdapterItem>(
 ```
 
 As always, if the code snippets are not enough, [check out the sample app on Github and try it yourself](https://github.com/marius-m/merged-bg-grid-adapter)! It has basic adapters, adapters with paddings, and merged background adapters (what we were trying to do here) to try out 💪.
+
+
+# Using LayoutManager
+
+What about using `LinearLayoutManager`? Is this still relevant? It could be if you wanted to 🤷 However there seems to be better ways of solving this.
+
+1.  Apply a background to the whole `RecyclerView` with all the corners bars
+2.  Apply `ItemDecorator` separator for the items to be split
+
+And you should be good to go.
+
+However I&rsquo;m not entirely sure this&rsquo;ll work when using `ConcatAdapter` 🤔
 
 
 # Ending notes
