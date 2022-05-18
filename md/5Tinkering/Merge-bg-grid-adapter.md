@@ -1,14 +1,16 @@
-# Merging adapter BGs
+# How to meld item backgrounds together in RecyclerView.Adapter
 
 ..or how to use &rsquo;Shapes&rsquo; in Android to use merged backgrounds in `RecyclerView.Adapter` when using `GridLayoutManager`. Good thing the title is not long enough 🤦
 
-I don&rsquo;t see tutorials where you would get in trouble when displaying items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
+I don&rsquo;t see many tutorials where you would *get in trouble* when displaying items in a list. But things get dicey when you start to apply a bit more complicated strategies for your use case.
 
 For instance, have you tried using `ConcateAdapter` using adapters in a multiple spans `GridLayoutManager`? Or just simply using a regular `RecyclerView.Adapter` with `GridLayoutManager` to display items with separators instead of paddings?
 
-For the last couple of weeks, I&rsquo;ve seen quite a bit of adapters. So I wanted to share some of the take-aways 🤷
+For the last couple of weeks, I&rsquo;ve seen *quite a bit of adapter implementations*. So I wanted to share some of the take-aways 🤷
 
-Oh, and [don&rsquo;t forget to check out Github repo for the sample app](https://github.com/marius-m/merged-bg-grid-adapter)!
+In short, my mission was to display items with backgrounds. Little of what I did not notice at first was that background outlines were &rsquo;meld&rsquo; together. This is where the challenge came in.
+
+Oh, and ↗️ [don&rsquo;t forget to check out Github repo for the sample app](https://github.com/marius-m/merged-bg-grid-adapter)!
 
 
 # Double separator issue
@@ -58,7 +60,7 @@ Even though I could not use separators on my use case, but I can&rsquo;t deny th
 
 # Using different backgrounds (success 🙌)
 
-In some sense, this seems a bit counterintuitive and a more complicated solution than it should be. And I still think *this is the case*. However, I did manage to get a working solution and I&rsquo;m pretty happy about it. At least for now.
+In some sense, this seems a bit counterintuitive and a more complicated solution than it should be. And I still think *this is the case*. However, I did manage to get a working solution, and I&rsquo;m pretty happy about it. At least for now.
 
 
 ## The trick
@@ -114,7 +116,7 @@ Oh, and I almost forgot. **This is how you provide a background using Android sh
 
 ## Moving to the 1st item
 
-It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item, we provide a background, that has all the corners drawn. Like so.
+It&rsquo;s important to know <span class="underline">where is the first row</span> and <span class="underline">where is the first item in the column</span>. For the first item, we provide a background that has all the corners drawn. Like so.
 
 ![img](imgs/0_0.png)
 
