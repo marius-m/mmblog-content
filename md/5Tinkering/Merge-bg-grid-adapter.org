@@ -137,17 +137,20 @@ And this works really well for the rest of the items as well if we would provide
 Now that we know the basic premise of what we're aiming for let us see how we implement the =RecyclerView.Adapter=. The coolest part is that there is not much logic here. As stated before, we only need to figure out
 
 - Is the item in the first row
-  #+begin_src kotlin
+
+#+begin_src kotlin
 private fun isItemInFirstRow(pos: Int): Boolean {
     return pos <= gridSpanSize - 1
 }
-  #+end_src
+#+end_src
+
 - Is the item first in column
-  #+begin_src kotlin
+
+#+begin_src kotlin
 private fun isItemInFirstColumn(pos: Int): Boolean {
     return pos % gridSpanSize == 0
 }
-  #+end_src
+#+end_src
 
 The rest of the adapter looks nothing out of ordinary.
 
@@ -184,15 +187,15 @@ class MergeAdapter<T : BasicAdapterItem>(
     }
 
     /**
-     * @return item position is in the first row
-     */
+     ,* @return item position is in the first row
+     ,*/
     private fun isItemInFirstRow(pos: Int): Boolean {
         return pos <= gridSpanSize - 1
     }
 
     /**
-     * @return item position is in the first column, when on different rows
-     */
+     ,* @return item position is in the first column, when on different rows
+     ,*/
     private fun isItemInFirstColumn(pos: Int): Boolean {
         return pos % gridSpanSize == 0
     }
@@ -201,11 +204,11 @@ class MergeAdapter<T : BasicAdapterItem>(
 }
 #+end_src
 
-
 Now we provide the resolved properties to the =ViewHolder= to draw items.
 
 - Snippet to apply the background
-  #+begin_src kotlin
+
+#+begin_src kotlin
  /**
  * Provides diff background based on item position in the grid
  * @param isFirstRow item is in the first row of the grid
@@ -223,9 +226,11 @@ private fun bgResourceByPosition(
         else -> R.drawable.shape_ll_merge_column_last
     }
 }
-  #+end_src
+#+end_src
+
 - Rest of the =ViewHolder= is nothing out of ordinary
-  #+begin_src kotlin
+
+#+begin_src kotlin
 class MergeAdapterViewHolder<T : BasicAdapterItem>(
     private val binding: ItemMergedBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -272,7 +277,7 @@ class MergeAdapterViewHolder<T : BasicAdapterItem>(
         }
     }
 }
-  #+end_src
+#+end_src
 
 As always, if the code snippets are not enough, [[https://github.com/marius-m/merged-bg-grid-adapter][check out the sample app on Github and try it yourself]]! It has basic adapters, adapters with paddings, and merged background adapters (what we were trying to do here) to try out 💪.
 

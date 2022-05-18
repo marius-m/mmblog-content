@@ -157,19 +157,20 @@ And this works really well for the rest of the items as well if we would provide
 Now that we know the basic premise of what we&rsquo;re aiming for let us see how we implement the `RecyclerView.Adapter`. The coolest part is that there is not much logic here. As stated before, we only need to figure out
 
 -   Is the item in the first row
-    
-    ```kotlin
-    private fun isItemInFirstRow(pos: Int): Boolean {
-        return pos <= gridSpanSize - 1
-    }
-    ```
+
+```kotlin
+private fun isItemInFirstRow(pos: Int): Boolean {
+    return pos <= gridSpanSize - 1
+}
+```
+
 -   Is the item first in column
-    
-    ```kotlin
-    private fun isItemInFirstColumn(pos: Int): Boolean {
-        return pos % gridSpanSize == 0
-    }
-    ```
+
+```kotlin
+private fun isItemInFirstColumn(pos: Int): Boolean {
+    return pos % gridSpanSize == 0
+}
+```
 
 The rest of the adapter looks nothing out of ordinary.
 
@@ -226,9 +227,47 @@ class MergeAdapter<T : BasicAdapterItem>(
 Now we provide the resolved properties to the `ViewHolder` to draw items.
 
 -   Snippet to apply the background
-    
-    ```kotlin
-     /**
+
+```kotlin
+ /**
+ * Provides diff background based on item position in the grid
+ * @param isFirstRow item is in the first row of the grid
+ * @param isFirstColumn item is in the first column of the row
+ */
+@DrawableRes
+private fun bgResourceByPosition(
+    isFirstRow: Boolean,
+    isFirstColumn: Boolean,
+): Int {
+    return when {
+        isFirstRow && isFirstColumn -> R.drawable.shape_ll_merge_row_column_first
+        isFirstRow && !isFirstColumn -> R.drawable.shape_ll_merge_row_column_last
+        isFirstColumn -> R.drawable.shape_ll_merge_column_first
+        else -> R.drawable.shape_ll_merge_column_last
+    }
+}
+```
+
+-   Rest of the `ViewHolder` is nothing out of ordinary
+
+```kotlin
+class MergeAdapterViewHolder<T : BasicAdapterItem>(
+    private val binding: ItemMergedBinding,
+) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        isFirstRow: Boolean,
+        isFirstColumn: Boolean,
+        item: T,
+        itemClickListener: ((T) -> Unit)?
+    ) {
+        val viewClickListener = toViewClickListenerOrNull(item, itemClickListener)
+        binding.root.setOnClickListener(viewClickListener)
+        binding.title.text = item.title
+        binding.root.setBackgroundResource(bgResourceByPosition(isFirstRow, isFirstColumn))
+    }
+
+    /**
      * Provides diff background based on item position in the grid
      * @param isFirstRow item is in the first row of the grid
      * @param isFirstColumn item is in the first column of the row
@@ -245,57 +284,20 @@ Now we provide the resolved properties to the `ViewHolder` to draw items.
             else -> R.drawable.shape_ll_merge_column_last
         }
     }
-    ```
--   Rest of the `ViewHolder` is nothing out of ordinary
-    
-    ```kotlin
-    class MergeAdapterViewHolder<T : BasicAdapterItem>(
-        private val binding: ItemMergedBinding,
-    ) : RecyclerView.ViewHolder(binding.root) {
-    
-        fun bind(
-            isFirstRow: Boolean,
-            isFirstColumn: Boolean,
-            item: T,
-            itemClickListener: ((T) -> Unit)?
-        ) {
-            val viewClickListener = toViewClickListenerOrNull(item, itemClickListener)
-            binding.root.setOnClickListener(viewClickListener)
-            binding.title.text = item.title
-            binding.root.setBackgroundResource(bgResourceByPosition(isFirstRow, isFirstColumn))
-        }
-    
-        /**
-         * Provides diff background based on item position in the grid
-         * @param isFirstRow item is in the first row of the grid
-         * @param isFirstColumn item is in the first column of the row
-         */
-        @DrawableRes
-        private fun bgResourceByPosition(
-            isFirstRow: Boolean,
-            isFirstColumn: Boolean,
-        ): Int {
-            return when {
-                isFirstRow && isFirstColumn -> R.drawable.shape_ll_merge_row_column_first
-                isFirstRow && !isFirstColumn -> R.drawable.shape_ll_merge_row_column_last
-                isFirstColumn -> R.drawable.shape_ll_merge_column_first
-                else -> R.drawable.shape_ll_merge_column_last
-            }
-        }
-    
-        companion object {
-            fun <T : BasicAdapterItem> create(viewGroup: ViewGroup): MergeAdapterViewHolder<T> {
-                return MergeAdapterViewHolder(
-                    binding = ItemMergedBinding.inflate(
-                        LayoutInflater.from(viewGroup.context),
-                        viewGroup,
-                        false
-                    )
+
+    companion object {
+        fun <T : BasicAdapterItem> create(viewGroup: ViewGroup): MergeAdapterViewHolder<T> {
+            return MergeAdapterViewHolder(
+                binding = ItemMergedBinding.inflate(
+                    LayoutInflater.from(viewGroup.context),
+                    viewGroup,
+                    false
                 )
-            }
+            )
         }
     }
-    ```
+}
+```
 
 As always, if the code snippets are not enough, [check out the sample app on Github and try it yourself](https://github.com/marius-m/merged-bg-grid-adapter)! It has basic adapters, adapters with paddings, and merged background adapters (what we were trying to do here) to try out 💪.
 
