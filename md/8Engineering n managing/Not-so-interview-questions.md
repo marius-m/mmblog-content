@@ -1,36 +1,38 @@
-Lately I got into a couple of interviews, that got really deep into technical questions. If these questions are actually useful in actual inteviews is **really** up for debate. However I found them quite entertaining and interesting to know.
+Lately I got into a couple of interviews, that got *really* deep into technical questions. Either these questions are *actually* useful in actual inteviews is **really** up for debate. However I found them quite entertaining and interesting to know.
 
-On the other hand, in some cases these may provide a bit of more insight for technical knowledge for a candicate. Or just simply, may be fun to use 🤷
+On the other hand, in some cases these may provide a bit of more insight for technical knowledge for a candidate. Or just simply, may be fun to use 🤷
 
-In any case, here are my scribbles around them. Did not got around answering all of them. And in the deep of investigation, found other questions that may be used when interviewing.
+In either case, here are my scribbles around them. Did not got around answering all of them. And in the deep of investigation, found other questions that may be used when interviewing.
+
+I&rsquo;ll try to keep the list growing, will see how it goes 🤔
 
 
 # Generic topics
 
-Normally I don&rsquo;t really have a list of questions whenever I&rsquo;m going through an interview. Especially so to its chaotic nature of the interviews itself.
+Normally I don&rsquo;t really have a list of questions whenever I&rsquo;m going through an interview. Especially so due to its chaotic nature.
 
-I do however have a list of topics that are a good reference, when something is good to know, to get a grasp of experience the candidate has.
+I do however have a list of topics that are a good reference to get a grasp of experience the candidate has.
 
-This also works well, when preparing for a candidate in advance. Whenever going through a CV, you would get naturally some questions that would expand on some of the *flavors* of these topics.
+This also works well, when preparing for a candidate in advance. Whenever going through a CV, LinkedIn you would naturally get some questions, that would expand on some of the *flavors* of these topics. In other works, it is a good reference.
 
 
 ## Topics
 
--   Libraries <code>[0%]</code>
-    -   [ ] Serialization
-    -   [ ] Networking
-    -   [ ] State machine
-    -   [ ] Dependency Injection
-    -   [ ] Using something home grown
-    -   [ ] Navigation frameworks
--   Infrastructure <code>[0%]</code>
-    -   [ ] CI
-    -   [ ] Code review
-    -   [ ] Generate APK / Docker
-    -   [ ] Git branching mechanism
--   Code style <code>[0%]</code>
-    -   [ ] Composition over Inheritance
-    -   [ ] SOLID Principles
+-   Libraries
+    -   Serialization
+    -   Networking
+    -   State machine
+    -   Dependency Injection
+    -   Using something home grown
+    -   Navigation frameworks
+-   Infrastructure
+    -   CI
+    -   Code review
+    -   Generate APK / Docker
+    -   Git branching mechanism
+-   Code style
+    -   Composition over Inheritance
+    -   SOLID Principles
         -   Single responsibility
         -   Open / Closed principle
         -   Liskov substitution
@@ -38,50 +40,50 @@ This also works well, when preparing for a candidate in advance. Whenever going 
         -   Dependency inversion
         -   Mentioned &rsquo;single responsibility&rsquo;
         -   Floating around
-    -   [ ] Sensitive data saving
-    -   [ ] What types of tests can you perform?, (TDD, instrumentation, cut-off networking)
--   Tools <code>[0%]</code>
-    -   [ ] Essential tools, IDE
-    -   [ ] Proxy device?
-    -   [ ] Dockerize environment?
-    -   [ ] Use local dev server?
-    -   [ ] Code automation from outside ?
-    -   [ ] Keeping up with code style
--   People in work team <code>[0%]</code>
-    -   [ ] How many people are working
-    -   [ ] How do they share knowledge
--   Situational <code>[0%]</code>
-    -   [ ] Unprepared API, figuring out how system work
-    -   [ ] How to find screens that are used in the app
-    -   [ ] Taking over a project, need to make a build
-    -   [ ] How to align different styles of coding / different tools that are used
-    -   [ ] Last difficult problem that you&rsquo;ve solved
-    -   [ ] Collaboration with difficult colleague
+    -   Sensitive data saving
+    -   What types of tests can you perform?, (TDD, instrumentation, cut-off networking)
+-   Tools
+    -   Essential tools, IDE
+    -   Proxy device?
+    -   Dockerize environment?
+    -   Use local dev server?
+    -   Code automation from outside ?
+    -   Keeping up with code style
+-   People in work team
+    -   How many people are working
+    -   How do they share knowledge
+-   Situational
+    -   Unprepared API, figuring out how system work
+    -   How to find screens that are used in the app
+    -   Taking over a project, need to make a build
+    -   How to align different styles of coding / different tools that are used
+    -   Last difficult problem that you&rsquo;ve solved
+    -   Collaboration with difficult colleague
 -   Simple tech
-    -   [ ] Where would you use a &rsquo;Service&rsquo;, &rsquo;Broadcast receiver&rsquo;
-    -   [ ] What tools would you use if you would need to crate a network call and display results on screen (step by step)
-    -   [ ] How do you pass data between activities
-    -   [ ] Lifecycle events of an activity
-    -   [ ] File structure of a project
+    -   Where would you use a &rsquo;Service&rsquo;, &rsquo;Broadcast receiver&rsquo;
+    -   What tools would you use if you would need to crate a network call and display results on screen (step by step)
+    -   How do you pass data between activities
+    -   Lifecycle events of an activity
+    -   File structure of a project
         -   Translations
         -   Styles
         -   Code
-    -   [ ] How do you create different types of the app (free, non-free)
-    -   [ ] How would you communicate / pass data between fragments
-    -   [ ] What are the differences between a list and a map
+    -   How do you create different types of the app (free, non-free)
+    -   How would you communicate / pass data between fragments
+    -   What are the differences between a list and a map
 -   Medium / Harder tech
-    -   [ ] Difference between Serializable / Parcelable, which one to use
-    -   [ ] Can a &rsquo;Service&rsquo; interact directly with an &rsquo;Activity&rsquo;, how would you do it
-    -   [ ] What is a singleton, what are the pros / cons, how would you do it
-    -   [ ] Difference between `View` and `ViewGroup`
+    -   Difference between Serializable / Parcelable, which one to use
+    -   Can a &rsquo;Service&rsquo; interact directly with an &rsquo;Activity&rsquo;, how would you do it
+    -   What is a singleton, what are the pros / cons, how would you do it
+    -   Difference between `View` and `ViewGroup`
 -   A bit random <code>[0%]</code>
-    -   [ ] What are the most common resources that you use to keep up to date
-    -   [ ] How to do you keep up-to-date? (tech wise)
-    -   [ ] Biggest win, biggest failure?
-    -   [ ] Most / least favorite tech
-    -   [ ] Spare project
-    -   [ ] Security ?
-    -   [ ] Why not react native ar native?
+    -   What are the most common resources that you use to keep up to date
+    -   How to do you keep up-to-date? (tech wise)
+    -   Biggest win, biggest failure?
+    -   Most / least favorite tech
+    -   Spare project
+    -   Security ?
+    -   Why not react native ar native?
 
 
 # Questions
