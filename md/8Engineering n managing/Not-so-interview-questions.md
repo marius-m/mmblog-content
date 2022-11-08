@@ -7,6 +7,8 @@ In any case, here are my scribbles around them. Did not got around answering all
 
 # IT Fundamentals and principles
 
+Really just a set of various principles. It is just a good way to check and refurbish some ideas.
+
 -   [Res](https://en.wikipedia.org/wiki/Category:Programming_principles)
 -   Abstraction principle (computer programming)
     -   Reduce duplication
@@ -149,7 +151,9 @@ In any case, here are my scribbles around them. Did not got around answering all
 
 # Design patterns
 
--   [res](https://refactoring.guru/design-patterns/creational-patterns)
+As always, even if I use a pattern, I can never remember the name of it. So again - a good idea to refurbish patterns and their names.
+
+-   [Res](https://refactoring.guru/design-patterns/creational-patterns)
 -   **Creational**
     -   [Factory method](https://refactoring.guru/design-patterns/factory-method)
         -   Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
@@ -215,6 +219,8 @@ In any case, here are my scribbles around them. Did not got around answering all
 
 # Development methodologies
 
+Ah. The place of least experience. On one hand, I don&rsquo;t really invest time into it, as I don&rsquo;t really have too much work around it. But then again, it is always good to know the naming, if you will be looking for some of the things around that topic.
+
 -   Most modern development processes can be vaguely described as agile. Other methodologies include waterfall, prototyping, iterative and incremental development, spiral development, rapid application development, and extreme programming.
 -   &ldquo;Agile software development&rdquo; refers to a group of software development frameworks based on iterative development, where requirements and solutions evolve via collaboration between self-organizing cross-functional teams.
     -   Dynamic systems development method (DSDM)
@@ -245,10 +251,16 @@ In any case, here are my scribbles around them. Did not got around answering all
 
 # Architecture
 
+Not much here 🤷
+
 -   [(Blog) MVC, MVP, MVVM comaprement](https://academy.realm.io/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/)
 
 
 # Questions <code>[7/21]</code>
+
+A very good and interesting list to know. However, as statet before, not entirely a good list to go through, when trying to &ldquo;get a feel&rdquo; how much experience a candidate has.
+
+One idea where these questions would definitely work out, is probably, if the candidate is really good. Then these are excellent questions to &ldquo;press&rdquo; a bit.
 
 -   [X] Exception types in java
     -   Checked Exceptions
@@ -264,7 +276,7 @@ In any case, here are my scribbles around them. Did not got around answering all
     -   Map doesn’t contain duplicate keys.
     -   Each key can map at max one value.
     -   [How maps work](http://coding-geek.com/how-does-a-hashmap-work-in-java/)
--   [X] Strings are immutavble (Why strings are immuable)
+-   [X] Strings are immutable (Why strings are immuable)
     -   The collection of strings stored in the heap memory refers to the String pool. Whenever a new object is created, it is checked if it is already present in the String pool or not.
 -   [ ] Kotlin `inline` / `crossinline`
 -   [ ] Generics in java / kotlin
@@ -314,6 +326,8 @@ In any case, here are my scribbles around them. Did not got around answering all
 
 
 # Questions extra <code>[12/15]</code>
+
+A few more of those extras.
 
 -   [X] Explain different types of typecasting?
     -   Implicit: Storing values from a smaller data type to the larger data type. It is automatically done by the compiler.
@@ -370,6 +384,8 @@ In any case, here are my scribbles around them. Did not got around answering all
 
 
 # Very tricky extra&rsquo;s <code>[2/2]</code>
+
+Rally tricky ones, that are a bit wild west if a candidate might know it 🤷
 
 -   [X] Explain the term &ldquo;Double Brace Initialization&rdquo; in Java?
     -   Double Brace Initialization is a Java term that refers to the combination of two independent processes. There are two braces used in this. The first brace creates an anonymous inner class. The second brace is an initialization block. When these both are used together, it is known as Double Brace Initialization. The inner class has a reference to the enclosing outer class, generally using the ‘this’ pointer. It is used to do both creation and initialization in a single statement. It is generally used to initialize collections. It reduces the code and also makes it more readable.

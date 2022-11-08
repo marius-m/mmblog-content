@@ -7,6 +7,8 @@ On the other hand, in some cases these may provide a bit of more insight for tec
 In any case, here are my scribbles around them. Did not got around answering all of them. And in the deep of investigation, found other questions that may be used when interviewing.
 
 * IT Fundamentals and principles
+Really just a set of various principles. It is just a good way to check and refurbish some ideas.
+
 - [[https://en.wikipedia.org/wiki/Category:Programming_principles][Res]]
 - Abstraction principle (computer programming)
   - Reduce duplication
@@ -146,7 +148,9 @@ In any case, here are my scribbles around them. Did not got around answering all
   - It argues that arbitrary limits on the number of instances of a particular type of data or structure should not be allowed
   - Specifically, an entity should either be forbidden entirely, only one should be allowed, or any number of them should be allowed.[2] Although various factors outside that particular software could limit this number in practice, it should not be the software itself that puts a hard limit on the number of instances of the entity.
 * Design patterns
-- [[https://refactoring.guru/design-patterns/creational-patterns][res]]
+As always, even if I use a pattern, I can never remember the name of it. So again - a good idea to refurbish patterns and their names.
+
+- [[https://refactoring.guru/design-patterns/creational-patterns][Res]]
 - *Creational*
   - [[https://refactoring.guru/design-patterns/factory-method][Factory method]]
     - Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
@@ -209,6 +213,8 @@ In any case, here are my scribbles around them. Did not got around answering all
     - Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.
     - Since the objects know their own classes, they’ll be able to pick a proper method on the visitor less awkwardly. They “accept” a visitor and tell it what visiting method should be executed.
 * Development methodologies
+Ah. The place of least experience. On one hand, I don't really invest time into it, as I don't really have too much work around it. But then again, it is always good to know the naming, if you will be looking for some of the things around that topic.
+
 - Most modern development processes can be vaguely described as agile. Other methodologies include waterfall, prototyping, iterative and incremental development, spiral development, rapid application development, and extreme programming.
 - "Agile software development" refers to a group of software development frameworks based on iterative development, where requirements and solutions evolve via collaboration between self-organizing cross-functional teams.
   - Dynamic systems development method (DSDM)
@@ -236,8 +242,14 @@ In any case, here are my scribbles around them. Did not got around answering all
 - Waterfall development
   - The waterfall model is a sequential development approach, in which development is seen as flowing steadily downwards (like a waterfall) through several phases
 * Architecture
+Not much here 🤷
+
 - [[https://academy.realm.io/posts/eric-maxwell-mvc-mvp-and-mvvm-on-android/][(Blog) MVC, MVP, MVVM comaprement]]
 * Questions [7/21]
+A very good and interesting list to know. However, as statet before, not entirely a good list to go through, when trying to "get a feel" how much experience a candidate has.
+
+One idea where these questions would definitely work out, is probably, if the candidate is really good. Then these are excellent questions to "press" a bit.
+
 - [X] Exception types in java
   - Checked Exceptions
   - Unchecked Exceptions
@@ -252,7 +264,7 @@ In any case, here are my scribbles around them. Did not got around answering all
   - Map doesn’t contain duplicate keys.
   - Each key can map at max one value.
   - [[http://coding-geek.com/how-does-a-hashmap-work-in-java/][How maps work]]
-- [X] Strings are immutavble (Why strings are immuable)
+- [X] Strings are immutable (Why strings are immuable)
   - The collection of strings stored in the heap memory refers to the String pool. Whenever a new object is created, it is checked if it is already present in the String pool or not.
 - [ ] Kotlin =inline= / =crossinline=
 - [ ] Generics in java / kotlin
@@ -300,6 +312,8 @@ In any case, here are my scribbles around them. Did not got around answering all
 - [ ] What are the operators for =flatMap=, =concatMap=, =switchMap= (rx).
 - [ ] What is the difference and how do you use =observeOn= and =subscribeOn=
 * Questions extra [12/15]
+A few more of those extras.
+
 - [X] Explain different types of typecasting?
   - Implicit: Storing values from a smaller data type to the larger data type. It is automatically done by the compiler.
   - Explicit: Storing the value of a larger data type into a smaller data type. This results in information loss:
@@ -353,6 +367,8 @@ In any case, here are my scribbles around them. Did not got around answering all
   - You don't
 - [ ] How do you use flavors in Android, what are dimensions of a flavor
 * Very tricky extra's [2/2]
+Rally tricky ones, that are a bit wild west if a candidate might know it 🤷
+
 - [X] Explain the term "Double Brace Initialization" in Java?
   - Double Brace Initialization is a Java term that refers to the combination of two independent processes. There are two braces used in this. The first brace creates an anonymous inner class. The second brace is an initialization block. When these both are used together, it is known as Double Brace Initialization. The inner class has a reference to the enclosing outer class, generally using the ‘this’ pointer. It is used to do both creation and initialization in a single statement. It is generally used to initialize collections. It reduces the code and also makes it more readable.
 - [X] Why is it said that the length() method of String class doesn’t return accurate results?
