@@ -1,0 +1,3 @@
+Essentially, this is the tool where [&rsquo;eating your own dogfood&rsquo;](https://www.urbandictionary.com/define.php?term=eating%20your%20own%20dog%20food) term comes in place.
+
+I&rsquo;ve created a tool to serve multiple purposes, but at its core, **I was having a problem. I have solved my problem using tech.** Others saw me using it. Asked if they could use it 🤷. Been that ever since. Feel free to use it at your own will 🤷
