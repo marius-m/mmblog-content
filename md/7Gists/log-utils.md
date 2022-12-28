@@ -1,5 +1,3 @@
-[Source](https://gist.github.com/marius-m/f510e2dbbdf3c881e991ef2c139d1a6d)
-
 A set of utility methods that can be used in `Kotlin` or `Java`.
 
 -   Main reason why I use this, is to **provide info on what class instance was used**.
@@ -15,6 +13,8 @@ When it comes to **backtracing your app / service, it is all about the logs and 
     ```kotlin
     logger.info("onInit(app: $app)".withLogInstance(this))
     ```
+
+[Source](https://gist.github.com/marius-m/f510e2dbbdf3c881e991ef2c139d1a6d)
 
 ```kotlin
 /**
